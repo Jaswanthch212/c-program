@@ -1,0 +1,14 @@
+#include <stdio.h>
+int main() {
+    int number = 25;
+    int *ptr;
+    ptr = &number;
+    printf("Original value: %d\n", number);
+    printf("Value via pointer: %d\n", *ptr);
+    printf("Address of number: %p\n", &number);
+    printf("Address stored in pointer: %p\n", ptr);
+    *ptr = 100;
+    printf("Updated value: %d\n", number);
+    return 0;
+}
+
