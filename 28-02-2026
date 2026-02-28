@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main()
+{
+    int var = 10;
+    int *p;
+    p = &var;
+    printf("Address of var is: %p\n", &var);
+    printf("Address stored in pointer p is: %p\n", p);
+    printf("Value of var is: %d\n", var);
+    printf("Value accessed via pointer p is: %d\n", *p);
+    *p = 20;
+    printf("New value of var is: %d\n", var);
+    return 0;
+}
+
