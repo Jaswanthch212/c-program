@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void increment(int *p) {
+    (*p)++;
+}
+
+int main() {
+    int x = 42;
+    int *ptr = &x;
+    printf("Original value of x: %d\n", x);
+    printf("Address of x: %p\n", &x);
+    printf("Value stored in pointer (address of x): %p\n", ptr);
+    printf("Value accessed through pointer: %d\n", *ptr);
+    increment(ptr);
+    printf("Value of x after increment function: %d\n", x);
+    printf("Value accessed through pointer after function: %d\n", *ptr);
+    return 0;
+}
