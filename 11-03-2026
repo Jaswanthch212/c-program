@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100], temp;
+    int i, j, len = 0;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    for (i = 0; str[i] != '\0' && str[i] != '\n'; i++) {
+        len++;
+    }
+    str[len] = '\0';
+
+    printf("Length: %d\n", len);
+
+    for (i = 0; i < len / 2; i++) {
+        temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+    printf("Reversed: %s\n", str);
+
+    for (i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+    printf("Uppercase: %s\n", str);
+
+    return 0;
+}
