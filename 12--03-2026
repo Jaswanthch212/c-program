@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+float calculateAverage(int arr[], int size);
+int findMaximum(int arr[], int size);
+
+int main() {
+    int data[] = {15, 42, 7, 89, 23, 56, 11};
+    int n = sizeof(data) / sizeof(data[0]);
+    
+    float avg = calculateAverage(data, n);
+    int max = findMaximum(data, n);
+    
+    printf("Average: %.2f\n", avg);
+    printf("Maximum: %d\n", max);
+    
+    return 0;
+}
+
+float calculateAverage(int arr[], int size) {
+    int sum = 0;
+    for(int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return (float)sum / size;
+}
+
+int findMaximum(int arr[], int size) {
+    int max = arr[0];
+    for(int i = 1; i < size; i++) {
+        if(arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
