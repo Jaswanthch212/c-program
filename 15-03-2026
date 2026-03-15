@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void printHeader();
+double calculateAverage(int arr[], int size);
+int findMax(int arr[], int size);
+void printResults(double avg, int max);
+
+int main() {
+    int grades[] = {85, 92, 78, 90, 88};
+    int n = sizeof(grades) / sizeof(grades[0]);
+    double avg;
+    int max;
+
+    printHeader();
+    avg = calculateAverage(grades, n);
+    max = findMax(grades, n);
+    printResults(avg, max);
+
+    return 0;
+}
+
+void printHeader() {
+    printf("--- Grade Processing System ---\n");
+}
+
+double calculateAverage(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return (double)sum / size;
+}
+
+int findMax(int arr[], int size) {
+    int max = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+void printResults(double avg, int max) {
+    printf("Average Grade: %.2f\n", avg);
+    printf("Highest Grade: %d\n", max);
+    printf("-----------------------------\n");
+}
+
