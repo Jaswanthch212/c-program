@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main(){
+    int n,i,a[100];
+    scanf("%d",&n);
+    for(i=0;i<n;i++) scanf("%d",&a[i]);
+    int max=a[0]+a[1]+a[2],cur=max;
+    for(i=3;i<n;i++){
+        cur=cur-a[i-3]+a[i];
+        if(cur>max) max=cur;
+    }
+    printf("%d",max);
+}
