@@ -1,0 +1,22 @@
+#include <stdio.h>
+int fact(int n) {
+    int i, f = 1;
+    for(i = 1; i <= n; i++)
+        f *= i;
+    return f;
+}
+
+int main() {
+    int n = 145, temp, sum = 0, rem;
+    temp = n;
+    while(n > 0) {
+        rem = n % 10;
+        sum += fact(rem);
+        n /= 10;
+    }
+    if(sum == temp)
+        printf("Strong");
+    else
+        printf("Not Strong");
+    return 0;
+}
