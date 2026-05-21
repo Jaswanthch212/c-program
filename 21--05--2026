@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+    int num, thousands, hundreds, tens, units;
+
+    printf("Enter a 4-digit number: ");
+    scanf("%d", &num);
+
+    thousands = num / 1000;
+    hundreds = (num / 100) % 10;
+    tens = (num / 10) % 10;
+    units = num % 10;
+
+    printf("Thousands digit = %d\n", thousands);
+    printf("Hundreds digit = %d\n", hundreds);
+    printf("Tens digit = %d\n", tens);
+    printf("Units digit = %d\n", units);
+
+    return 0;
+}
