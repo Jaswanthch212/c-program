@@ -1,0 +1,47 @@
+int dp[1001];
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int dfs(int* arr, int n, int d, int i) {
+
+    if(dp[i] != 0)
+        return dp[i];
+
+    int ans = 1;
+
+    // Jump left
+    for(int j = i - 1; j >= max(0, i - d); j--) {
+
+        if(arr[j] >= arr[i])
+            break;
+
+        ans = max(ans, 1 + dfs(arr, n, d, j));
+    }
+
+    // Jump right
+    for(int j = i + 1; j <= (i + d < n - 1 ? i + d : n - 1); j++) {
+
+        if(arr[j] >= arr[i])
+            break;
+
+        ans = max(ans, 1 + dfs(arr, n, d, j));
+    }
+
+    return dp[i] = ans;
+}
+
+int maxJumps(int* arr, int arrSize, int d) {
+
+    memset(dp, 0, sizeof(dp));
+
+    int result = 1;
+
+    for(int i = 0; i < arrSize; i++) {
+        result = max(result,
+                     dfs(arr, arrSize, d, i));
+    }
+
+    return result;
+}
