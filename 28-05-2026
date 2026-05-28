@@ -1,0 +1,47 @@
+char* minWindow(char* s, char* t) {
+    int need[128] = {0};
+
+    for(int i = 0; t[i]; i++)
+        need[(int)t[i]]++;
+
+    int left = 0;
+    int start = 0;
+    int minLen = INT_MAX;
+    int count = strlen(t);
+
+    for(int right = 0; s[right]; right++) {
+
+        if(need[(int)s[right]] > 0)
+            count--;
+
+        need[(int)s[right]]--;
+
+        while(count == 0) {
+
+            if(right - left + 1 < minLen) {
+                minLen = right - left + 1;
+                start = left;
+            }
+
+            need[(int)s[left]]++;
+
+            if(need[(int)s[left]] > 0)
+                count++;
+
+            left++;
+        }
+    }
+
+    if(minLen == INT_MAX) {
+        char *ans = (char *)malloc(1);
+        ans[0] = '\0';
+        return ans;
+    }
+
+    char *ans = (char *)malloc(minLen + 1);
+
+    strncpy(ans, s + start, minLen);
+    ans[minLen] = '\0';
+
+    return ans;
+}
