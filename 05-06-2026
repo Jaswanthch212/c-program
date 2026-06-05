@@ -1,0 +1,54 @@
+class Solution {
+public:
+    long long dp[20][11][11][2];
+    string s;
+
+    long long dfs(int pos, int p2, int p1, bool started, bool tight) {
+        if (pos == s.size()) return 0;
+
+        if (!tight && dp[pos][p2][p1][started] != -1)
+            return dp[pos][p2][p1][started];
+
+        int limit = tight ? s[pos] - '0' : 9;
+        long long ans = 0;
+
+        for (int d = 0; d <= limit; d++) {
+            bool ntight = tight && (d == limit);
+
+            if (!started) {
+                if (d == 0)
+                    ans += dfs(pos + 1, 10, 10, false, ntight);
+                else
+                    ans += dfs(pos + 1, 10, d, true, ntight);
+            } else {
+                long long add = 0;
+
+                if (p2 != 10) {
+                    if ((p1 > p2 && p1 > d) ||
+                        (p1 < p2 && p1 < d))
+                        add = 1;
+                }
+
+                ans += add + dfs(pos + 1, p1, d, true, ntight);
+            }
+        }
+
+        if (!tight)
+            dp[pos][p2][p1][started] = ans;
+
+        return ans;
+    }
+
+    long long solve(long long n) {
+        if (n <= 0) return 0;
+
+        s = to_string(n);
+        memset(dp, -1, sizeof(dp));
+
+        return dfs(0, 10, 10, false, true);
+    }
+
+    long long totalWaviness(long long num1, long long num2) {
+        return solve(num2) - solve(num1 - 1);
+    }
+};
