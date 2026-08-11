@@ -1,0 +1,27 @@
+int missingInteger(int* nums, int numsSize) {
+    int prefix = nums[0];
+    int n = numsSize;
+
+    if (n == 1) {
+        return prefix + 1;
+    }
+
+    int i = 1;
+
+    while (i < n && nums[i] == nums[i - 1] + 1) {
+        prefix += nums[i];
+        i++;
+    }
+
+    int present[101] = {0};
+
+    for (int i = 0; i < n; i++) {
+        present[nums[i]] = 1;
+    }
+
+    while (prefix <= 100 && present[prefix]) {
+        prefix++;
+    }
+
+    return prefix;
+}
